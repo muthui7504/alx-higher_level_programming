@@ -20,18 +20,3 @@ class Student:
             return d
         else:
             return self.__dict__
-
-    def reload_from_json(self, json):
-        values = json
-        try:
-            self.first_name = values["first_name"]
-        except Exception:
-            pass
-        try:
-            self.last_name = values["last_name"]
-        except Exception:
-            pass
-        try:
-            self.age = values["age"]
-        except Exception:
-            pass

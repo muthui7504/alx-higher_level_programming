@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A class Square that defines a square
+""" Defining a class Square
 """
 
 
@@ -33,8 +33,8 @@ class Square:
             ValueError: size must be >= 0
         """
 
-        if type(value) is not int:
-            raise TypeError('size must be an integer')
+        if type(value) is not int or type(value) is not float:
+            raise TypeError('size must be a number')
         if value < 0:
             raise ValueError('size must be >= 0')
         self.__size = value
@@ -46,3 +46,21 @@ class Square:
         """
 
         return self.size**2
+
+    def __lt__(self, other):
+        return (self.area() < other.area())
+
+    def __le__(self, other):
+        return (self.area() <= other.area())
+
+    def __eq__(self, other):
+        return (self.area() == other.area())
+
+    def __ne__(self, other):
+        return (self.area() != other.area())
+
+    def __gt__(self, other):
+        return (self.area() > other.area())
+
+    def __ge__(self, other):
+        return (self.area() >= other.area())

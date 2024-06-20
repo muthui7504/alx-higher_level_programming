@@ -1,6 +1,1 @@
- 0x06. Python - Classes and Objects
-
-
-
-
-
+### Objects and classes in Python

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Defining a class square
+"""Defining a class Square
 """
 
 
@@ -62,12 +62,12 @@ class Square:
            TypeError: position must be a tuple of 2 positive integers
         """
 
-        if len(value) != 2 or not isinstance(value, tuple):
-            raise TypeError('position must be a tuple of 2 positive integers')
-        if type(value[0]) is not int or type(value[1]) is not int:
-            raise TypeError('position must be a tuple of 2 positive integers')
-        if value[0] < 0 or value[1] < 0:
-            raise TypeError('position must be a tuple of 2 positive integers')
+        if not isinstance(value, tuple) or len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if any(not isinstance(num, int) for num in value):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if any(num < 0 for num in value):
+            raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
     def area(self):
@@ -78,14 +78,32 @@ class Square:
 
         return self.size**2
 
-    def my_print(self):
-        """public method my_print prints the square to the standard output
+    def __str__(self):
+        """special method __str__ to be called before print
         """
 
+        return (self.square_string())
+
+    def square_string(self):
+        """public method square_string stores the square to the string
+        Return
+            return square string
+        """
+
+        string = ''
         if self.size == 0:
-            print()
             return
         for j in range(self.position[1]):
-            print()
+            string += '\n'
         for i in range(self.size):
-            print(' '*self.position[0] + "#"*self.size)
+            if i != self.size - 1:
+                string += (' '*self.position[0] + '#'*self.size + '\n')
+            else:
+                string += (' '*self.position[0] + '#'*self.size)
+        return (string)
+
+    def my_print(self):
+        """public method my_print print the square string
+        """
+
+        print(self.square_string(), end='')
